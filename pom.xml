@@ -7,7 +7,7 @@
 	<name>Java Image Info</name>
 	<description>JII (Java Image Info) provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
 	<url>https://github.com/th-schwarz/JII</url>
-	
+
 	<properties>
 		<project.source.version>1.6</project.source.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -79,17 +79,18 @@
 			</plugin>
 		</plugins>
 	</build>
-	<developers><developer>
-      <id>th-schwarz</id>
-      <name>Thilo Schwarz</name>
-      <email>thilo.schwarz AT googlemail.com</email>
-      <url>http://www.s-th.info</url>
-      <roles>
-        <role>Head Project Manager</role>
-        <role>Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
 	
+	<developers>
+		<developer>
+			<id>th-schwarz</id>
+			<name>Thilo Schwarz</name>
+			<email>thilo.schwarz AT googlemail.com</email>
+			<url>http://www.s-th.info</url>
+			<roles>
+				<role>Head Project Manager</role>
+				<role>Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
 	</developers>
 </project>
