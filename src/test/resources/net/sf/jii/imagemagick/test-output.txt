@@ -1,0 +1,20 @@
+Image: Pictures/glasses.jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Resolution: 72x72
+  Channel depth:
+    gray: 8-bit
+  Histogram:
+         1: (  0,  0,  0) #000000 black
+     12875: ( 24, 74,181) #184AB5 rgb(24,74,181)
+      5672: ( 24, 74,189) #184ABD rgb(24,74,189)
+       396: ( 24, 82,165) #1852A5 rgb(24,82,165)
+  Channel statistics:
+    Gray:
+      min: 9 (0.0352941)
+      max: 176 (0.690196)
+  Properties:
+    date:create: 2010-07-17T12:39:28+02:00
+    date:modify: 2002-08-18T11:31:36+02:00
+  Artifacts:
+    verbose: true
+  Version: ImageMagick 6.7.1-0 2011-07-23 Q16 http://www.imagemagick.org
