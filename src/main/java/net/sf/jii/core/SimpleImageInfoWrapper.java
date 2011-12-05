@@ -42,13 +42,13 @@ public class SimpleImageInfoWrapper implements DimensionProvider {
 	}
 
 	@Override
-	public synchronized void set(File file) throws FileNotFoundException, ReadException {
+	public void set(File file) throws FileNotFoundException, ReadException {
 		set(new BufferedInputStream(new FileInputStream(file)));
 
 	}
 
 	@Override
-	public synchronized void set(InputStream in) throws ReadException {
+	public void set(InputStream in) throws ReadException {
 		try {
 			ii = new SimpleImageInfo(in);
 		} catch (IOException e) {
