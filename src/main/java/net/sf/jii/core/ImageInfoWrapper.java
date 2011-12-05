@@ -25,7 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import net.sf.jii.DimensionProvider;
+import net.sf.jii.IDimensionProvider;
 import net.sf.jii.ImageType;
 import net.sf.jii.Resolution;
 import net.sf.jii.IResolutionProvider;
@@ -33,7 +33,7 @@ import net.sf.jii.exception.ReadException;
 
 import org.devlib.schmidt.imageinfo.ImageInfo;
 
-public class ImageInfoWrapper implements DimensionProvider, IResolutionProvider {
+public class ImageInfoWrapper implements IDimensionProvider, IResolutionProvider {
 
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };
 	private ImageInfo ii;

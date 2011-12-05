@@ -25,7 +25,7 @@ import net.sf.jii.exception.ReadException;
 /**
  * Interface for beans which provides the {@link Dimension} of an image.
  */
-public interface DimensionProvider extends IInfoProvider {
+public interface IDimensionProvider extends IInfoProvider {
 
 	/**
 	 * Obtain the {@link Dimension} of the current image.

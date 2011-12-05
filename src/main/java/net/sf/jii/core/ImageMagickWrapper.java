@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.jii.IAdditionalPropertiesProvider;
-import net.sf.jii.DimensionProvider;
+import net.sf.jii.IDimensionProvider;
 import net.sf.jii.ImageType;
 import net.sf.jii.IInfoProvider;
 import net.sf.jii.Resolution;
@@ -39,7 +39,7 @@ import net.sf.jii.imagemagick.ImageMagick;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ImageMagickWrapper implements DimensionProvider, IResolutionProvider, IInfoProvider, IAdditionalPropertiesProvider {
+public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider, IInfoProvider, IAdditionalPropertiesProvider {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagickWrapper.class);
 	private ImageMagick igm;
 

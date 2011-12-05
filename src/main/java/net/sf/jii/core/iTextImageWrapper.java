@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import net.sf.jii.DimensionProvider;
+import net.sf.jii.IDimensionProvider;
 import net.sf.jii.ImageType;
 import net.sf.jii.Resolution;
 import net.sf.jii.IResolutionProvider;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.lowagie.text.Image;
 
-public class iTextImageWrapper implements DimensionProvider, IResolutionProvider {
+public class iTextImageWrapper implements IDimensionProvider, IResolutionProvider {
 	private static Logger logger = LoggerFactory.getLogger(iTextImageWrapper.class);
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };
 	private Image image;

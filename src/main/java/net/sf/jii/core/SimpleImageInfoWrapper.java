@@ -26,12 +26,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.sf.jii.DimensionProvider;
+import net.sf.jii.IDimensionProvider;
 import net.sf.jii.ImageType;
 import net.sf.jii.exception.ReadException;
 import uk.co.jaimon.SimpleImageInfo;
 
-public class SimpleImageInfoWrapper implements DimensionProvider {
+public class SimpleImageInfoWrapper implements IDimensionProvider {
 
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };
 	private SimpleImageInfo ii;
