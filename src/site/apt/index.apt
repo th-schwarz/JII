@@ -1,0 +1,36 @@
+                                    ----------------------------
+												About
+                                    ----------------------------
+                                    
+JII - Java Image Info
+	
+  It provides a clean interface to a collection of Java libraries and source code that reads basic properties of images.
+  The focus is on the following image types which are relevant for the web: 
+  
+  * BMP
+  
+  * GIF
+  
+  * JPEG
+  
+  * PNG
+  
+  []
+  
+  The indention for this project to check which is the best way to do this for my project. Because of the clean interface, 
+  it is very easy to switch between different implementations.
+  
+
+Supported libraries / source codes:
+  
+  * <<{{{http://sourceforge.net/projects/itext/}iText}}>>: A library for pdf generation. \
+  There are an internal class to readout some image properties.  
+  
+  * <<ImageInfo>>: A small and robust Java class by Marco Schmidt. It seems he doesn't support this project any longer.
+  The corresponding website isn't accessible for years.
+  
+  * <<{{{http://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo/}SimpleImageInfo}}>>: A Java class by Jaimon Mathew
+  to get image size without loading the whole data. It's very fast.
+  
+  * <<Wrapper to the command line tool {{{http://www.imagemagick.org/script/identify.php}identify}} of ImageMagick>>: This wrapper is
+  written by the author and analyzes the output of the tool. 

@@ -4,8 +4,8 @@
 	<groupId>net.sf.jii</groupId>
 	<artifactId>java-image-Info</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Java Image Info</name>
-	<description>JII (Java Image Info) provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
+	<name>JII (Java Image Info)</name>
+	<description>JII provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
 	<url>https://github.com/th-schwarz/JII</url>
 	<inceptionYear>2011</inceptionYear>
 	<licenses>
@@ -70,6 +70,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>${project.source.version}</source>
 					<target>${project.source.version}</target>
@@ -109,6 +110,8 @@
 								<show>package</show>
 								<nohelp>true</nohelp>
 								<excludePackageNames>uk.co.jaimon:net.sf.jii.imagemagick</excludePackageNames>
+								<top><![CDATA[<h1>${project.name}</h1>]]></top>
+								<bottom><![CDATA[Copyright &#169; {inceptionYear}-{currentYear} <a href="http://www.thischwa.de">Thilo Schwarz<a>. All rights reserved.]]></bottom>
 								<links>
 									<link>http://docs.oracle.com/javase/6/docs/api/</link>
 								</links>
@@ -122,6 +125,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+		<site>
+			<id>jii-local-site-deploy</id>
+			<url>file:///Users/thilo/Development/public_html/jii/</url>
+		</site>
+	</distributionManagement>
 	
 	<developers>
 		<developer>

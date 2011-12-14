@@ -40,6 +40,11 @@ import de.thischwa.jii.Resolution;
 import de.thischwa.jii.exception.ReadException;
 import de.thischwa.jii.imagemagick.ImageMagick;
 
+/**
+ * Wrapper to the operation bean to the command 'identify' of <a href="http://www.imagemagick.org">ImageMagick</a>.
+ *
+ * @author Thilo Schwarz
+ */
 public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider, IInfoProvider, IAdditionalPropertiesProvider {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagickWrapper.class);
 	private ImageMagick igm;

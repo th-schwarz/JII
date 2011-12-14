@@ -66,23 +66,46 @@ public class ProcessBuilderWrapper {
 		this(null, command);
 	}
 	
+	/**
+	 * Get the content of the errorstream of the underlying process. Line separator is the system property <tt>line.separator</tt>.
+	 * 
+	 * @return Errors as String or an empty String if there are no errors.
+	 */
 	public String getErrors() {
 		return errors.toString();
 	}
 	
+	/**
+	 * Obtain if errors are happened or not.
+	 * 
+	 * @return <code>true</code> if one or more errors are happened, otherwise <code>false</code>.
+	 */
 	public boolean hasErrors() {
 		return (errors != null && !getErrors().isEmpty());
 	}
 	
+	/**
+	 * Get the content of the inputstream of the underlying process. Line separator is the system property <tt>line.separator</tt>.
+	 * 
+	 * @return Output of the process as String or an empty String if there are no errors.
+	 */
 	public String getInfos() {
 		return infos.toString();
 	}
 	
+	/**
+	 * Get the return status of the underlying process.
+	 * @return The return status. By convention, the value 0 indicates normal termination.
+	 * @see Process#waitFor()
+	 */
 	public int getStatus() {
 		return status;
 	}
 
-	class StreamBoozer extends Thread {
+	/**
+	 * Thread to 'booze' an {@link InputStream}. The content will be written to the desired {@link PrintWriter}. 
+	 */
+	private class StreamBoozer extends Thread {
 		private InputStream in;
 		private PrintWriter pw;
 		

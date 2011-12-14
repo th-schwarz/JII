@@ -32,6 +32,12 @@ import de.thischwa.jii.exception.ReadException;
 
 import uk.co.jaimon.SimpleImageInfo;
 
+/**
+ * Wrapper to the operation bean <a href="http://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo/">SimpleImageInfo</a>
+ * by Jaimon Mathew.
+ *
+ * @author Thilo Schwarz
+ */
 public class SimpleImageInfoWrapper implements IDimensionProvider {
 
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };

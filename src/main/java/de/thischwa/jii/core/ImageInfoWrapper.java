@@ -34,6 +34,11 @@ import de.thischwa.jii.ImageType;
 import de.thischwa.jii.Resolution;
 import de.thischwa.jii.exception.ReadException;
 
+/**
+ * Wrapper to the operation bean <tt>ImageInfo</tt> by Marco Schmidt.
+ *
+ * @author Thilo Schwarz
+ */
 public class ImageInfoWrapper implements IDimensionProvider, IResolutionProvider {
 
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };

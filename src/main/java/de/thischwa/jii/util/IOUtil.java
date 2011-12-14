@@ -20,55 +20,74 @@ package de.thischwa.jii.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Static helper object for IO related issues.
- *
+ * 
  * @author Thilo Schwarz
  */
 public class IOUtil {
-    private static final int defaultBufferSize = 1024 * 4;
-    private static final String defaultEncoding = "utf-8";
-    
-	public static void closeQuietly(Reader reader) {
-		if(reader == null)
+	private static final int defaultBufferSize = 1024 * 4;
+
+	/** Default character encoding. */
+	public static final String defaultEncoding = "utf-8";
+	
+	private IOUtil() {
+	}
+
+	/**
+	 * Unconditionally close the desired {@link Reader}.
+	 * 
+	 * @param closeable
+	 *            Can be <code>null</code>.
+	 */
+	public static void closeQuietly(Closeable closeable) {
+		if (closeable == null)
 			return;
 		try {
-			reader.close();
+			closeable.close();
 		} catch (IOException e) {
 			// irrelevant
 		}
 	}
-	
-	public static void closeQuietly(Writer writer) {
-		if(writer == null)
-			return;
-		try {
-			writer.close();
-		} catch (IOException e) {
-			// irrelevant
-		}
-	}
-	
+
+	/**
+	 * Get the contents of an {@link InputStream} as a String using the default character encoding {@link #defaultEncoding}.
+	 * 
+	 * @param in
+	 *            The {@link InputStream} to read from.
+	 * @return The requested String.
+	 * @throws IOException
+	 */
 	public static String toString(InputStream in) throws IOException {
 		return toString(in, defaultEncoding);
 	}
-	
+
+	/**
+	 * Get the contents of an {@link InputStream} as a String using the specified character encoding.
+	 * 
+	 * @param in
+	 *            The {@link InputStream} to read from.
+	 * @param encoding
+	 *            The character encoding to use.
+	 * @return The requested String.
+	 * @throws IOException
+	 */
 	public static String toString(InputStream in, String encoding) throws IOException {
 		char[] buf = new char[defaultBufferSize];
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in, encoding));
 		StringWriter strWriter = new StringWriter();
 		BufferedWriter writer = new BufferedWriter(strWriter);
 		int read = reader.read(buf);
-		while(read != -1) {
+		while (read != -1) {
 			writer.write(buf);
 			read = reader.read(buf);
 		}
@@ -79,10 +98,12 @@ public class IOUtil {
 
 	/**
 	 * Parse an InputStream line-by-line.
-	 *  
-	 * @param in {@link InputStream} of the output.
+	 * 
+	 * @param in
+	 *            {@link InputStream} of the output.
 	 * @return List of lines.
-	 * @throws IOException If an I/O error occurs.
+	 * @throws IOException
+	 *             If an I/O error occurs.
 	 */
 	public static List<String> parseLineByLine(InputStream in) throws IOException {
 		InputStreamReader isr = new InputStreamReader(in);

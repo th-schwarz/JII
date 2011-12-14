@@ -17,6 +17,11 @@ import de.thischwa.jii.ImageType;
 import de.thischwa.jii.Resolution;
 import de.thischwa.jii.exception.ReadException;
 
+/**
+ * Wrapper to an internal class of <a href="http://sourceforge.net/projects/itext/">iText</a>.
+ *
+ * @author Thilo Schwarz
+ */
 public class iTextImageWrapper implements IDimensionProvider, IResolutionProvider {
 	private static Logger logger = LoggerFactory.getLogger(iTextImageWrapper.class);
 	private static ImageType[] supportedTypes = new ImageType[] { ImageType.BMP, ImageType.GIF, ImageType.JPG, ImageType.PNG };
