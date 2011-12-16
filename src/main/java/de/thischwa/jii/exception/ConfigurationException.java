@@ -19,7 +19,7 @@
 package de.thischwa.jii.exception;
 
 /**
- * Exception thrown when something is wrong with the configuration stuff.
+ * Exception thrown when something is wrong with the configuration.
  */
 public class ConfigurationException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
@@ -31,5 +31,4 @@ public class ConfigurationException extends RuntimeException {
 	public ConfigurationException(String msg) {
 		super(msg);
 	}
-
 }

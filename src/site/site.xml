@@ -10,6 +10,7 @@
 		<menu name="Introduction">
 			<item name="About" href="/index.html" />
 			<item name="Usage" href="/usage.html"/>
+			<item name="Download" href="/download.html"/>
 		</menu>
 		<menu ref="reports"/>
 	</body>

@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * An enum to holds infos for the different image types. Several static helper methods are provided to detect the correct image type.
+ * Hold informations about the different image types. Several static helper methods are provided to detect the correct image type.
  */
 public enum ImageType {
 

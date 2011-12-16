@@ -26,8 +26,10 @@ import de.thischwa.jii.exception.ReadException;
 
 
 /**
- * Interface for all beans, which provides informations about an image file in general. It is the root interface for other more specific
+ * Interface for all beans, which provides properties of an image file. It is the root interface for other more specific
  * interfaces.
+ * 
+ * @author Thilo Schwarz
  */
 public interface IInfoProvider {
 
