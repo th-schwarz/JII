@@ -29,7 +29,7 @@
 	<distributionManagement>
 		<repository>
 			<id>thischwa.repo</id>
-			<url>ftp://ftp.strato.com</url>
+			<url>ftp://ftp.strato.com/</url>
 		</repository>
 	</distributionManagement>
 

@@ -4,9 +4,30 @@
                                     
 Manually download
 
-	Every distribution can be found in our {{{https://github.com/th-schwarz/JII/downloads}download area}}.
+  Every distribution can be found in our {{{https://github.com/th-schwarz/JII/downloads}download area}}.
 
 
-Maven
+Using Maven2
 
-  ... coming soon
+  JII isn't in the official maven repositories yet. But the author provides a public repository. To use it,
+  you have to add the following snippets to your pom:
+  
+
++------------------------------------------------------------------------------+
+	<repositories>
+		<repository>
+			<id>thischwa-repro</id>
+			<url>http://maven-repo.thischwa.de/maven2/</url>
+		</repository>
+	</repositories>
++------------------------------------------------------------------------------+
+
+  And to the dependencies add the following:
+
++------------------------------------------------------------------------------+
+	<dependency>
+		<groupId>de.thischwa.jii</groupId>
+		<artifactId>java-image-info</artifactId>
+		<version>${jii.version}</version>
+	</dependency>
++------------------------------------------------------------------------------+  
