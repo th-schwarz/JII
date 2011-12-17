@@ -1,10 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.sf.jii</groupId>
+	<groupId>de.thischwa.jii</groupId>
 	<artifactId>java-image-info</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>JII (Java Image Info)</name>
+	<packaging>jar</packaging>
 	<description>JII provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
 	<url>https://github.com/th-schwarz/JII</url>
 	<inceptionYear>2011</inceptionYear>
@@ -25,6 +26,13 @@
 		<connection>scm:git:git://github.com/th-schwarz/JII.git</connection>
 		<developerConnection>scm:git:git@github.com:th-schwarz/JII.git</developerConnection>
 	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>thischwa.repo</id>
+			<url>ftp://ftp.strato.com</url>
+		</repository>
+	</distributionManagement>
 
 	<properties>
 		<project.source.version>1.6</project.source.version>
@@ -96,7 +104,7 @@
 				<configuration>
 					<show>protected</show>
 					<nohelp>true</nohelp>
-					<excludePackageNames>uk.co.jaimon:net.sf.jii.imagemagick</excludePackageNames>
+					<excludePackageNames>uk.co.jaimon:de.thischwa.jii.imagemagick</excludePackageNames>
 				</configuration>
 				<executions>
 					<execution>
@@ -108,7 +116,7 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<!--  build the source jar -->
+				<!-- build the source jar -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.1.2</version>
@@ -181,6 +189,16 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+
+		<extensions>
+			<!-- Enabling the use of FTP -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>1.0-beta-6</version>
+			</extension>
+		</extensions>
 	</build>
 
 	<developers>
