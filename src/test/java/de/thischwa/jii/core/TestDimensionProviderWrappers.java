@@ -54,7 +54,8 @@ public class TestDimensionProviderWrappers {
 				{ new ImageMagickWrapper(commandDirIM) }, 
 				{ new ImageInfoWrapper() }, 
 				{ new SimpleImageInfoWrapper() },
-				{ new iTextImageWrapper() } };
+				{ new iTextImageWrapper() },
+				{ new ImageIOWrapper() } };
 		return Arrays.asList(providers);
 	}
 
@@ -67,6 +68,7 @@ public class TestDimensionProviderWrappers {
 				continue;
 			dp.set(info.getFile());
 			assertEquals(info.getFile().getName(), info.getDimension(), dp.getDimension());
+			assertEquals(info.getFile().getName(), info.getImageType(), dp.getImageType());
 		}
 	}
 }
