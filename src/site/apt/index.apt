@@ -34,3 +34,5 @@ Supported libraries / source codes:
   
   * <<Wrapper to the command line tool {{{http://www.imagemagick.org/script/identify.php}identify}} of ImageMagick>>: This wrapper is
   written by the author and analyzes the output of the tool. 
+  
+  * <<Wrapper to Java's javax.imageio.ImageIO>>: A relatively slow pure JRE solution. 
