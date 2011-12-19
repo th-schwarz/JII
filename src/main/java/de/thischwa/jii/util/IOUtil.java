@@ -24,10 +24,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 /**
  * Static helper object for IO related issues.
@@ -44,7 +46,7 @@ public class IOUtil {
 	}
 
 	/**
-	 * Unconditionally close the desired {@link Reader}.
+	 * Unconditionally close the desired {@link Closeable}.
 	 * 
 	 * @param closeable
 	 *            Can be <code>null</code>.
@@ -54,6 +56,37 @@ public class IOUtil {
 			return;
 		try {
 			closeable.close();
+		} catch (IOException e) {
+			// irrelevant
+		}
+	}
+	/**
+	 * Unconditionally close the desired {@link ImageReader}.
+	 * 
+	 * @param iReader
+	 *            Can be <code>null</code>.
+	 */
+	public static void closeQuietly(ImageReader iReader) {
+		if (iReader == null)
+			return;
+		try {
+			iReader.dispose();
+		} catch (Exception e) {
+			// irrelevant
+		}
+	}
+	
+	/**
+	 * Unconditionally close the desired {@link ImageInputStream}.
+	 * 
+	 * @param ii
+	 *            Can be <code>null</code>.
+	 */
+	public static void closeQuietly(ImageInputStream ii) {
+		if (ii == null)
+			return;
+		try {
+			ii.close();
 		} catch (IOException e) {
 			// irrelevant
 		}
