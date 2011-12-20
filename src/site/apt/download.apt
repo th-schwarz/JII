@@ -17,7 +17,7 @@ Using Maven2
 	<repositories>
 		<repository>
 			<id>thischwa-repro</id>
-			<url>http://maven-repo.thischwa.de/maven2/</url>
+			<url>http://maven-repo.thischwa.de/</url>
 		</repository>
 	</repositories>
 +------------------------------------------------------------------------------+
