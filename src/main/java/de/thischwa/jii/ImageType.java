@@ -40,6 +40,15 @@ public enum ImageType {
 		this.extensions = new HashSet<String>(extensions.length);
 		this.extensions.addAll(Arrays.asList(extensions));
 	}
+	
+	/**
+	 * Return the common file extensions for this type.
+	 * 
+	 * @return Array of lower cased file extensions.
+	 */
+	public String[] getExtensions() {
+		return extensions.toArray(new String[0]);
+	}
 
 	/**
 	 * Return the mime type for this type.
