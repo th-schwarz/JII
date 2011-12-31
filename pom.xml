@@ -21,7 +21,7 @@
 	</issueManagement>
 
 	<scm>
-		<url>https://github.com/th.schwarz/JII</url>
+		<url>https://github.com/th-schwarz/JII</url>
 		<connection>scm:git:git://github.com/th-schwarz/JII.git</connection>
 		<developerConnection>scm:git:git@github.com:th-schwarz/JII.git</developerConnection>
 	</scm>
