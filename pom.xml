@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.thischwa.jii</groupId>
 	<artifactId>java-image-info</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3</version>
 	<name>JII (Java Image Info)</name>
 	<packaging>jar</packaging>
 	<description>JII provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
