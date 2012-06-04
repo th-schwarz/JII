@@ -189,8 +189,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-
-
+		
 		<extensions>
 			<!-- Enabling the use of FTP -->
 			<extension>
