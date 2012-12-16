@@ -9,5 +9,5 @@ This project licensed under the [Apache License, Version 2.0](http://www.apache.
 
 ## Changes 
 
-* 0.5
+* 0.5-SNAPSHOT
   * updated slf4j to 1.7.2
