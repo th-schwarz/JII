@@ -1,7 +1,22 @@
-                                    ----------------------------
-											  Download
-                                    ----------------------------
-                                    
+   ----------------------------
+   Get it
+   ----------------------------
+
+  There are two ways to get the JII:
+
+Manual build 
+
+  The desired jar file can be easily build with maven2. 
+  Just download the source, declare a preferred SLF4J binding in the dependencies section of your POM within 
+  the runtime scope and call the following command:
+  
++------------------------------------------------------------------------------+
+mvn clean package
++------------------------------------------------------------------------------+
+
+  It creates a zip file like <<<java-image-info-[version]-SNAPSHOT-bin.zip>>> which contains all binaries
+  of the project dependencies. Simply put these files in your classpath.
+                  
 Using Maven2
 
   JII isn't already part of the official maven repositories. But the author provides a public repository. In order to
