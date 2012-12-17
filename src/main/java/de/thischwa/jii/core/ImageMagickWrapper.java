@@ -22,16 +22,10 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.thischwa.jii.IAdditionalPropertiesProvider;
 import de.thischwa.jii.IDimensionProvider;
 import de.thischwa.jii.IInfoProvider;
 import de.thischwa.jii.IResolutionProvider;
@@ -45,29 +39,13 @@ import de.thischwa.jii.imagemagick.ImageMagick;
  *
  * @author Thilo Schwarz
  */
-public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider, IInfoProvider, IAdditionalPropertiesProvider {
+public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider, IInfoProvider {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagickWrapper.class);
 	private ImageMagick igm;
-
-	/** The set of keys of the properties provided by {@link ImageMagick}. */
-	private Collection<String> keySet;
-
-	private Pattern geometricPattern = Pattern.compile("([0-9\\.]+[x][0-9\\.]+).*");
-	private Pattern imageTypePattern = Pattern.compile("([a-zA-Z]+) \\(.*\\)");
 
 	public ImageMagickWrapper(String cmd) {
 		logger.info("entered ImageMagickWrapper with command: {}", cmd);
 		igm = new ImageMagick(cmd);
-	}
-
-	@Override
-	public String[] getPropertiesNames() {
-		return igm.keySet().toArray(new String[] {});
-	}
-
-	@Override
-	public String getValue(String name) {
-		return igm.getValue(name);
 	}
 
 	@Override
@@ -78,21 +56,12 @@ public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvid
 
 	@Override
 	public ImageType getImageType() {
-		if (!keySet.contains("format"))
-			return null;
-		String format = igm.getValue("format");
-		Matcher matcher = imageTypePattern.matcher(format);
-		if (!matcher.matches()) {
-			logger.warn("Couldn't analyse format from {}", format);
-			return null;
-		}
-		return ImageType.getByExtension(matcher.group(1));
+		return ImageType.getByExtension(igm.getTypeStr());
 	}
 
 	@Override
 	public void set(File file) throws FileNotFoundException, ReadException {
 		igm.set(file);
-		keySet = igm.keySet();
 	}
 
 	@Override
@@ -102,18 +71,10 @@ public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvid
 
 	@Override
 	public Dimension getDimension() throws ReadException {
-		if (!keySet.contains("geometry"))
+		if(igm.getGeometryStr() == null)
 			return null;
-		String geometry = igm.getValue("geometry");
-		Matcher matcher = geometricPattern.matcher(geometry);
-		if (!matcher.matches()) {
-			logger.warn("Couldn't analyse geometry from {}", geometry);
-			return null;
-		}
-		String dimStr = matcher.group(1);
-		if (dimStr == null || dimStr.trim().length() < 3)
-			throw new ReadException("Dimension string is blank, empty or null!");
-		String[] xy = dimStr.split("x");
+		String geometry = igm.getGeometryStr();
+		String[] xy = geometry.split("x");
 		if (xy.length != 2)
 			throw new ReadException("Dimension string has not the correct pattern!");
 		else
@@ -122,18 +83,10 @@ public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvid
 
 	@Override
 	public Resolution getResolution() throws ReadException {
-		if (!keySet.contains("resolution"))
+		if (igm.getResolutionStr() == null)
 			return null;
-		String resolution = igm.getValue("resolution");
-		Matcher matcher = geometricPattern.matcher(resolution);
-		if (!matcher.matches()) {
-			logger.warn("Couldn't analyse resolution from {}", resolution);
-			return null;
-		}
-		String resStr = matcher.group(1);
-		if (resStr == null || resStr.trim().length() < 3)
-			throw new ReadException("Resolution string is blank, empty or null!");
-		String[] xy = resStr.split("x");
+		String resolution = igm.getResolutionStr();
+		String[] xy = resolution.split("x");
 		if (xy.length != 2)
 			throw new ReadException("Resolution string has not the correct pattern!");
 		try {
@@ -143,11 +96,5 @@ public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvid
 		} catch (NumberFormatException e) {
 			throw new ReadException(e);
 		}
-	}
-
-	@Override
-	public void printAll(PrintStream printStream) {
-		for (String key : igm.keySet())
-			printStream.println(String.format("%40s  =  %s", key, igm.getValue(key)));
 	}
 }

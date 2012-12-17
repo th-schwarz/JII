@@ -21,10 +21,7 @@ package de.thischwa.jii.imagemagick;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +40,10 @@ public class ImageMagick {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagick.class);
 
 	private List<String> command;
-	private ImageMagickOutputParser parser;
-
+	
+	private String typeStr = null;
+	private String geometryStr = null;
+	private String resolutionStr = null;
 	
 	/**
 	 * Initialize the bean with the desired command line name.
@@ -62,9 +61,10 @@ public class ImageMagick {
 
 		command = new ArrayList<String>();
 		command.add(basicCommandFile.getAbsolutePath());
-		command.add("-verbose");
 		command.add("-units");
 		command.add("PixelsPerInch");
+		command.add("-format");
+		command.add("%G;%[resolution.x]x%[resolution.y];%m");
 	}
 
 	/**
@@ -94,32 +94,28 @@ public class ImageMagick {
 			logger.error(msg);
 			throw new ReadException(msg);
 		}
-		List<String> infos = Arrays.asList(processBuilder.getInfos().split(System.getProperty("line.separator")));
-		parser = new ImageMagickOutputParser(infos);
+		String info = processBuilder.getInfos().trim();
+		String[] infos = info.split(";");
+		geometryStr = infos[0];
+		resolutionStr = infos[1];
+		typeStr = infos[2];
 	}
-
-	/**
-	 * Obtain the keys of the available properties.
-	 * 
-	 * @return A {@link Set} of keys contained the properties.
-	 */
-	public Set<String> keySet() {
-		return parser.keySet();
+	
+	public String getTypeStr() {
+		return typeStr;
 	}
-
-	/**
-	 * Obtain the value for the desired key.
-	 * 
-	 * @param key
-	 * @return The value of the specified key or <code>null</code> if there is no property for this key.
-	 */
-	public String getValue(String key) {
-		return parser.getValue(key);
+	
+	public String getGeometryStr() {
+		return geometryStr;
 	}
-
+	
+	public String getResolutionStr() {
+		return resolutionStr;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		ImageMagick im = new ImageMagick("/opt/local/bin/identify");
-		im.set(new File("src/test/resources/JII_120x65-72x72.gif"));
-		System.out.println(im.getValue("geometry"));
+		im.set(new File("src/test/resources/JII_120x65-140x72.png"));
+		//System.out.println(im.getValue("geometry"));
 	}
 }
