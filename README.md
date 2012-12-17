@@ -9,6 +9,6 @@ This project licensed under the [Apache License, Version 2.0](http://www.apache.
 
 ## Changes 
 
-* 0.5-SNAPSHOT
+* 0.5
   * updated slf4j to 1.7.2
   * issue#2: ImageMagickWrapper: change identify call to work with the format parameter

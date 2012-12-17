@@ -2,11 +2,6 @@
 											  Download
                                     ----------------------------
                                     
-Manually download
-
-  Every distribution can be found in our {{{https://github.com/th-schwarz/JII/downloads}download area}}.
-
-
 Using Maven2
 
   JII isn't already part of the official maven repositories. But the author provides a public repository. In order to
