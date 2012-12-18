@@ -62,7 +62,7 @@ public class ImageFileInfo {
 
 	public static ImageFileInfo[] getAll() {
 		List<ImageFileInfo> info = new ArrayList<ImageFileInfo>();
-		info.add(new ImageFileInfo("JII_120x65-72x72.gif", ImageType.GIF, 120, 65, 0, 0)); // resolution is missing in some versions, see http://www.imagemagick.org/discourse-server/viewtopic.php?f=3&t=22455
+		info.add(new ImageFileInfo("JII_120x65-72x72.gif", ImageType.GIF, 120, 65, 0, 0)); // GIFs has no resolution, - IM reports 0,0
 		info.add(new ImageFileInfo("JII_120x65-72x72.bmp", ImageType.BMP, 120, 65, 72, 72));
 		info.add(new ImageFileInfo("JII_240x130-300x300.jpg", ImageType.JPG, 240, 130, 300, 300));
 		info.add(new ImageFileInfo("JII_120x65-140x72.png", ImageType.PNG, 120, 65, 140, 72));

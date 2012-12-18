@@ -34,8 +34,6 @@ Supported libraries / source codes:
   to get the image size without loading the whole data. It's very fast.
   
   * <<Wrapper to the command line tool {{{http://www.imagemagick.org/script/identify.php}identify}} of ImageMagick>>: This wrapper is
-  written by the author and analyzes the output of the tool. \
-  <<Warning:>> There is currently a bug in newer versions of <identify>. There is no resolution any more, 
-  The bug is reported! 
+  written by the author and analyzes the output of the tool.
   
   * <<Wrapper to Java's javax.imageio.ImageIO>>: A relatively slow pure JRE solution. 
