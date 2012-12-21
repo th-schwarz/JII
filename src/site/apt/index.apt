@@ -27,7 +27,7 @@ Supported libraries / source codes:
   * <<{{{http://sourceforge.net/projects/itext/}iText}}>>: A library for pdf generation. \
   There is an internal class to read out some image properties.  
   
-  * <<ImageInfo>>: A small and robust Java class by Marco Schmidt. It seems he doesn't support this project any longer.
+  * <<ImageInfo>>: A small and robust Java class by Marco Schmidt. It seems that he doesn't support this project any longer.
   The corresponding website hasn't been accessible for years.
   
   * <<{{{http://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo/}SimpleImageInfo}}>>: A Java class by Jaimon Mathew

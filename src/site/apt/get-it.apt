@@ -32,7 +32,7 @@ Using Maven2
 	</repositories>
 +------------------------------------------------------------------------------+
 
-  And to the dependencies add the following:
+  To the dependencies add the following:
 
 +------------------------------------------------------------------------------+
 	<dependency>
