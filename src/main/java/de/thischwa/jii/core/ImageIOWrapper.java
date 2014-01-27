@@ -42,7 +42,7 @@ import de.thischwa.jii.util.IOUtil;
  */
 public class ImageIOWrapper implements IDimensionProvider {
 
-	private static ImageType[] supportedTypes = new ImageType[] { ImageType.GIF, ImageType.JPG, ImageType.PNG };
+	private static ImageType[] supportedTypes = new ImageType[] { ImageType.GIF, ImageType.JPG, ImageType.PNG, ImageType.BMP };
 
 	private Dimension dimension = null;
 	private ImageType imageType = null;
