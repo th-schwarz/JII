@@ -37,7 +37,7 @@ public enum ImageType {
 
 	private ImageType(String mimeType, String... extensions) {
 		this.mimeType = mimeType;
-		this.extensions = new HashSet<String>(extensions.length);
+		this.extensions = new HashSet<>(extensions.length);
 		this.extensions.addAll(Arrays.asList(extensions));
 	}
 	

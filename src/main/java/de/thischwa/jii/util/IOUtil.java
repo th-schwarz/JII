@@ -141,7 +141,7 @@ public class IOUtil {
 	public static List<String> parseLineByLine(InputStream in) throws IOException {
 		InputStreamReader isr = new InputStreamReader(in);
 		BufferedReader reader = new BufferedReader(isr);
-		List<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<>();
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
