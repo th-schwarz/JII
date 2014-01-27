@@ -34,7 +34,7 @@
 	</distributionManagement>
 
 	<properties>
-		<project.source.version>1.6</project.source.version>
+		<jse.version>1.7</jse.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
@@ -69,12 +69,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
+			<version>1.7.5</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.2</version>
+			<version>1.7.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -92,8 +93,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-					<source>${project.source.version}</source>
-					<target>${project.source.version}</target>
+					<source>${jse.version}</source>
+					<target>${jse.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -208,7 +209,6 @@
 		        </executions>
 			</plugin>
 		</plugins>
-		
 		<extensions>
 			<!-- Enabling the use of FTP -->
 			<extension>
