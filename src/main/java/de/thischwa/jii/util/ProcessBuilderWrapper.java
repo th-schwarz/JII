@@ -20,7 +20,6 @@ package de.thischwa.jii.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -126,11 +125,7 @@ public class ProcessBuilderWrapper {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				IOUtil.closeQuietly(br);
 			}
 		}
 	}	
