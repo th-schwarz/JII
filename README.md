@@ -7,6 +7,10 @@ This project licensed under the [Apache License, Version 2.0](http://www.apache.
 
 ## Changes 
 
+* 1.0
+  * changed the base package to codes.thischwa.jii
+  * updated slf4j to 1.7.7
+
 * 0.6
   * updated slf4j to 1.7.5
   * ImageIOWrapper: add type 'bmp'
