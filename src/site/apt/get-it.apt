@@ -3,6 +3,11 @@
    ----------------------------
 
   There are two ways to get the JII:
+  
+Download
+  The current version can be downloaded	from {{{https://sourceforge.net/projects/javaimageinfo/files/}Sourceforge}}.
+  There is a zip file like <<<java-image-info-[version]-bin.zip>>> which contains all binaries
+  of the project dependencies.
 
 Manual build 
 
@@ -16,28 +21,3 @@ mvn clean package
 
   It creates a zip file like <<<java-image-info-[version]-SNAPSHOT-bin.zip>>> which contains all binaries
   of the project dependencies. Simply put these files in your classpath.
-                  
-Using Maven2
-
-  JII isn't already part of the official maven repositories. But the author provides a public repository. In order to
-  use it, you have to add the following snippets to your pom:
-  
-
-+------------------------------------------------------------------------------+
-	<repositories>
-		<repository>
-			<id>thischwa-repro</id>
-			<url>http://maven-repo.thischwa.de/</url>
-		</repository>
-	</repositories>
-+------------------------------------------------------------------------------+
-
-  To the dependencies add the following:
-
-+------------------------------------------------------------------------------+
-	<dependency>
-		<groupId>de.thischwa.jii</groupId>
-		<artifactId>java-image-info</artifactId>
-		<version>${jii.version}</version>
-	</dependency>
-+------------------------------------------------------------------------------+  
