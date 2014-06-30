@@ -5,6 +5,7 @@
   There are two ways to get the JII:
   
 Download
+
   The current version can be downloaded	from {{{https://sourceforge.net/projects/javaimageinfo/files/}Sourceforge}}.
   There is a zip file like <<<java-image-info-[version]-bin.zip>>> which contains all binaries
   of the project dependencies.
