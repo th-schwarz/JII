@@ -22,7 +22,9 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,8 +36,6 @@ import codes.thischwa.jii.ImageFileInfo;
 import codes.thischwa.jii.ImageType;
 import codes.thischwa.jii.PropertiesHolder;
 import codes.thischwa.jii.Resolution;
-import codes.thischwa.jii.core.ImageMagickWrapper;
-import codes.thischwa.jii.core.iTextImageWrapper;
 
 @RunWith(value = Parameterized.class)
 public class TestResolutionProviderWrappers {
@@ -48,8 +48,13 @@ public class TestResolutionProviderWrappers {
 	@Parameters
 	public static Collection<IResolutionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
-		IResolutionProvider[][] providers = new IResolutionProvider[][] {
-				{ new ImageMagickWrapper(commandDirIM) },
+		String dylIM = PropertiesHolder.get("im.dyld");
+		Map<String, String> env = new HashMap<>();
+		if(dylIM != null) {
+			env.put("DYLD_LIBRARY_PATH", dylIM);
+		}
+		IResolutionProvider[][] providers = new IResolutionProvider[][] { 
+				{ new ImageMagickWrapper(commandDirIM, env) }, 
 				{ new iTextImageWrapper() },
 				{ new CommonsImageInfoWrapper() }
 		};

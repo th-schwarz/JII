@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A wrapper for the {@link ProcessBuilder} that reads all relevant streams which can cause an 'hanging' {@link Process}. The
@@ -46,13 +47,16 @@ public class ProcessBuilderWrapper {
 	private StringWriter infos;
 	private StringWriter errors;
 	private int status;
-	
-	public ProcessBuilderWrapper(File directory, List<String> command) throws Exception {
+
+	public ProcessBuilderWrapper(File directory, List<String> command, Map<String, String> environment) throws Exception {
 		infos = new StringWriter();
 		errors = new StringWriter();
 		ProcessBuilder pb = new ProcessBuilder(command);      
 		if(directory != null)
 			pb.directory(directory);
+		if(environment != null && environment.size() > 0) {
+			pb.environment().putAll(environment);
+		}
 		Process process = pb.start();
 		StreamBoozer seInfo = new StreamBoozer(process.getInputStream(), new PrintWriter(infos, true));
 		StreamBoozer seError = new StreamBoozer(process.getErrorStream(), new PrintWriter(errors, true));
@@ -63,8 +67,16 @@ public class ProcessBuilderWrapper {
 		seError.join();
 	}
 
+	public ProcessBuilderWrapper(File directory, List<String> command) throws Exception {
+		this(directory, command, null);
+	}
+	
 	public ProcessBuilderWrapper(List<String> command) throws Exception {
 		this(null, command);
+	}
+
+	public ProcessBuilderWrapper(List<String> command, Map<String, String> environment) throws Exception {
+		this(null, command, environment);
 	}
 	
 	/**

@@ -22,12 +22,12 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import codes.thischwa.jii.IDimensionProvider;
-import codes.thischwa.jii.IInfoProvider;
 import codes.thischwa.jii.IResolutionProvider;
 import codes.thischwa.jii.ImageType;
 import codes.thischwa.jii.Resolution;
@@ -39,13 +39,28 @@ import codes.thischwa.jii.imagemagick.ImageMagick;
  *
  * @author Thilo Schwarz
  */
-public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider, IInfoProvider {
+public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvider {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagickWrapper.class);
 	private ImageMagick igm;
 
+	/**
+	 * Initializes the wrapper.
+	 * 
+	 * @param cmd full path to the command 'identify'
+	 */
 	public ImageMagickWrapper(String cmd) {
+		this(cmd, null);
+	}
+	
+	/**
+	 * Initializes the wrapper.
+	 * 
+	 * @param cmd full path to the command 'identify'
+	 * @param envVars optional environment parameters 
+	 */
+	public ImageMagickWrapper(String cmd, Map<String, String> envVars) {
 		logger.info("entered ImageMagickWrapper with command: {}", cmd);
-		igm = new ImageMagick(cmd);
+		igm = new ImageMagick(cmd, envVars);
 	}
 
 	@Override

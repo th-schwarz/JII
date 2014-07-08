@@ -31,17 +31,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
 import codes.thischwa.jii.IDimensionProvider;
 import codes.thischwa.jii.ImageFileInfo;
 import codes.thischwa.jii.ImageType;
 import codes.thischwa.jii.PropertiesHolder;
-import codes.thischwa.jii.core.ImageIOWrapper;
-import codes.thischwa.jii.core.ImageInfoWrapper;
-import codes.thischwa.jii.core.ImageMagickWrapper;
-import codes.thischwa.jii.core.SimpleImageInfoWrapper;
-import codes.thischwa.jii.core.iTextImageWrapper;
 
 @RunWith(value = Parameterized.class)
 public class TestDimensionProviderWrappers {
@@ -54,13 +47,13 @@ public class TestDimensionProviderWrappers {
 	@Parameters
 	public static Collection<IDimensionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
-		String dylIM = PropertiesHolder.get("imDyl");
+		String dylIM = PropertiesHolder.get("im.dyld");
 		Map<String, String> env = new HashMap<>();
 		if(dylIM != null) {
 			env.put("DYLD_LIBRARY_PATH", dylIM);
 		}
 		IDimensionProvider[][] providers = new IDimensionProvider[][] { 
-				{ new ImageMagickWrapper(commandDirIM ) }, 
+				{ new ImageMagickWrapper(commandDirIM, env) }, 
 				{ new ImageInfoWrapper() }, 
 				{ new SimpleImageInfoWrapper() },
 				{ new iTextImageWrapper() },

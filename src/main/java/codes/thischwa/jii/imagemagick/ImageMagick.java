@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,8 @@ import codes.thischwa.jii.util.ProcessBuilderWrapper;
  */
 public class ImageMagick {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagick.class);
+	
+	private Map<String, String> environmentVariables;
 
 	private List<String> command;
 	
@@ -46,18 +49,21 @@ public class ImageMagick {
 	private String resolutionStr = null;
 	
 	/**
-	 * Initialize the bean with the desired command line name.
+	 * Initialize the bean with the desired command line name and environment variables.
 	 * 
 	 * @param commandFileName
+	 * @param environmentVariables 
 	 * @throws ConfigurationException
 	 */
-	public ImageMagick(String commandFileName) throws ConfigurationException {
+	public ImageMagick(String commandFileName, Map<String, String> environmentVariables) throws ConfigurationException {
 		if (commandFileName == null)
 			throw new ConfigurationException("Command file isn't set!");
 
 		File basicCommandFile = new File(commandFileName);
 		if (!basicCommandFile.exists())
 			throw new ConfigurationException(String.format("Command file doesn't exists: %s", basicCommandFile.getAbsolutePath()));
+		
+		this.environmentVariables = environmentVariables;
 
 		command = new ArrayList<>();
 		command.add(basicCommandFile.getAbsolutePath());
@@ -65,6 +71,16 @@ public class ImageMagick {
 		command.add("PixelsPerInch");
 		command.add("-format");
 		command.add("%G;%[resolution.x]x%[resolution.y];%m");
+	}
+
+	/**
+	 * Initialize the bean with the desired command line name.
+	 * 
+	 * @param commandFileName
+	 * @throws ConfigurationException
+	 */
+	public ImageMagick(String commandFileName) throws ConfigurationException {
+		this(commandFileName, null);
 	}
 
 	/**
@@ -82,7 +98,7 @@ public class ImageMagick {
 		cmd.add(file.getAbsolutePath());
 		ProcessBuilderWrapper processBuilder = null;
 		try {
-			processBuilder = new ProcessBuilderWrapper(cmd);
+			processBuilder = new ProcessBuilderWrapper(cmd, environmentVariables);
 			int status = processBuilder.getStatus();
 			logger.debug("Command has terminated with status: {}", status);
 		} catch (Exception e) {
@@ -114,7 +130,7 @@ public class ImageMagick {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ImageMagick im = new ImageMagick("/opt/local/bin/identify");
+		ImageMagick im = new ImageMagick("/Users/thilo/bin/ImageMagick/identify", null);
 		im.set(new File("src/test/resources/JII_120x65-140x72.png"));
 		//System.out.println(im.getValue("geometry"));
 	}
