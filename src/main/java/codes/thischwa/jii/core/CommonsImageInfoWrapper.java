@@ -37,7 +37,7 @@ import codes.thischwa.jii.Resolution;
 import codes.thischwa.jii.exception.ReadException;
 
 /**
- * Wrapper to commons-imaging.
+ * Wrapper to <a href="http://commons.apache.org/proper/commons-imaging/">commons-imaging</a>.
  *
  * @author Thilo Schwarz
  */
