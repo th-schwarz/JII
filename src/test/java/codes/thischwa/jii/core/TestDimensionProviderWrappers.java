@@ -22,12 +22,16 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
+import com.sun.xml.internal.ws.util.StringUtils;
 
 import codes.thischwa.jii.IDimensionProvider;
 import codes.thischwa.jii.ImageFileInfo;
@@ -50,12 +54,18 @@ public class TestDimensionProviderWrappers {
 	@Parameters
 	public static Collection<IDimensionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
+		String dylIM = PropertiesHolder.get("imDyl");
+		Map<String, String> env = new HashMap<>();
+		if(dylIM != null) {
+			env.put("DYLD_LIBRARY_PATH", dylIM);
+		}
 		IDimensionProvider[][] providers = new IDimensionProvider[][] { 
-				{ new ImageMagickWrapper(commandDirIM) }, 
+				{ new ImageMagickWrapper(commandDirIM ) }, 
 				{ new ImageInfoWrapper() }, 
 				{ new SimpleImageInfoWrapper() },
 				{ new iTextImageWrapper() },
-				{ new ImageIOWrapper() } };
+				{ new ImageIOWrapper() },
+				{ new CommonsImageInfoWrapper() } };
 		return Arrays.asList(providers);
 	}
 
