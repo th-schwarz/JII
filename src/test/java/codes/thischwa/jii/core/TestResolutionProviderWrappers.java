@@ -22,9 +22,7 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,12 +47,8 @@ public class TestResolutionProviderWrappers {
 	public static Collection<IResolutionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
 		String dylIM = PropertiesHolder.get("im.dyld");
-		Map<String, String> env = new HashMap<>();
-		if(dylIM != null) {
-			env.put("DYLD_LIBRARY_PATH", dylIM);
-		}
 		IResolutionProvider[][] providers = new IResolutionProvider[][] { 
-				{ new ImageMagickWrapper(commandDirIM, env) }, 
+				{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
 				{ new iTextImageWrapper() },
 				{ new CommonsImageInfoWrapper() }
 		};

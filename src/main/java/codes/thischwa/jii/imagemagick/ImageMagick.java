@@ -21,6 +21,7 @@ package codes.thischwa.jii.imagemagick;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ import codes.thischwa.jii.util.ProcessBuilderWrapper;
 public class ImageMagick {
 	private static Logger logger = LoggerFactory.getLogger(ImageMagick.class);
 	
-	private Map<String, String> environmentVariables;
+	private String libPath;
 
 	private List<String> command;
 	
@@ -52,10 +53,10 @@ public class ImageMagick {
 	 * Initialize the bean with the desired command line name and environment variables.
 	 * 
 	 * @param commandFileName
-	 * @param environmentVariables 
+	 * @param libPath optional path of the library of ImageMagick
 	 * @throws ConfigurationException
 	 */
-	public ImageMagick(String commandFileName, Map<String, String> environmentVariables) throws ConfigurationException {
+	public ImageMagick(String commandFileName, String libPath) throws ConfigurationException {
 		if (commandFileName == null)
 			throw new ConfigurationException("Command file isn't set!");
 
@@ -63,7 +64,7 @@ public class ImageMagick {
 		if (!basicCommandFile.exists())
 			throw new ConfigurationException(String.format("Command file doesn't exists: %s", basicCommandFile.getAbsolutePath()));
 		
-		this.environmentVariables = environmentVariables;
+		this.libPath = libPath;
 
 		command = new ArrayList<>();
 		command.add(basicCommandFile.getAbsolutePath());
@@ -98,7 +99,12 @@ public class ImageMagick {
 		cmd.add(file.getAbsolutePath());
 		ProcessBuilderWrapper processBuilder = null;
 		try {
-			processBuilder = new ProcessBuilderWrapper(cmd, environmentVariables);
+			Map<String, String> env = null;
+			if(libPath != null) { // if the lib path is set, build the corresponding environment var
+				env = new HashMap<>();
+				env.put("DYLD_LIBRARY_PATH", libPath);
+			}
+			processBuilder = new ProcessBuilderWrapper(cmd, env);
 			int status = processBuilder.getStatus();
 			logger.debug("Command has terminated with status: {}", status);
 		} catch (Exception e) {

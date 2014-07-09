@@ -22,7 +22,6 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,11 +55,11 @@ public class ImageMagickWrapper implements IDimensionProvider, IResolutionProvid
 	 * Initializes the wrapper.
 	 * 
 	 * @param cmd full path to the command 'identify'
-	 * @param envVars optional environment parameters 
+	 * @param libPath optional path of the library of ImageMagick
 	 */
-	public ImageMagickWrapper(String cmd, Map<String, String> envVars) {
+	public ImageMagickWrapper(String cmd, String libPath) {
 		logger.info("entered ImageMagickWrapper with command: {}", cmd);
-		igm = new ImageMagick(cmd, envVars);
+		igm = new ImageMagick(cmd, libPath);
 	}
 
 	@Override
