@@ -59,7 +59,15 @@ public class ImageIOWrapper implements IDimensionProvider {
 
 	@Override
 	public void set(File file) throws FileNotFoundException, ReadException {
-		set(new BufferedInputStream(new FileInputStream(file)));
+		InputStream in = null;
+		try {
+			in = new BufferedInputStream(new FileInputStream(file));
+			set(in);
+		} catch (FileNotFoundException | ReadException e) {
+			throw e;
+		} finally {
+			IOUtil.closeQuietly(in);
+		}
 	}
 
 	@Override

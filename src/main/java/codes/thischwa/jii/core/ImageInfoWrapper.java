@@ -32,6 +32,7 @@ import codes.thischwa.jii.IResolutionProvider;
 import codes.thischwa.jii.ImageType;
 import codes.thischwa.jii.Resolution;
 import codes.thischwa.jii.exception.ReadException;
+import codes.thischwa.jii.util.IOUtil;
 
 /**
  * Wrapper to the operation bean <tt>ImageInfo</tt> by Marco Schmidt.
@@ -54,7 +55,15 @@ public class ImageInfoWrapper implements IDimensionProvider, IResolutionProvider
 
 	@Override
 	public void set(File file) throws FileNotFoundException, ReadException {
-		set(new BufferedInputStream(new FileInputStream(file)));
+		InputStream in = null;
+		try {
+			in = new BufferedInputStream(new FileInputStream(file));
+			set(in);
+		} catch (FileNotFoundException | ReadException e) {
+			throw e;
+		} finally {
+			IOUtil.closeQuietly(in);
+		}
 	}
 
 	@Override
