@@ -37,3 +37,6 @@ Supported libraries / source codes:
   written by the author and analyzes the output of the tool.
   
   * <<Wrapper to Java's javax.imageio.ImageIO>>: A relatively slow pure JRE solution. 
+  
+  * <<{{{http://commons.apache.org/proper/commons-imaging/}Apache Commons Imaging}}>>: A library that reads and writes a variety of image formats, 
+  including fast parsing of image info (size, color space, ICC profile, etc.) and metadata.
