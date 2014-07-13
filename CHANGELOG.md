@@ -1,7 +1,6 @@
 # changelog
 
-* 1.1-SNAPSHOT
-  * issue #4: Include Apache-Commons-Imaging
+* 1.0.1-SNAPSHOT
   * issue #5: ImageMagick: path to the library must be respected 
   * issue #6: Some wrappers doesn't close InputStreams correctly
 

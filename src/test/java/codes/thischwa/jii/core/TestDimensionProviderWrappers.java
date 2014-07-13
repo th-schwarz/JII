@@ -52,7 +52,8 @@ public class TestDimensionProviderWrappers {
 				{ new SimpleImageInfoWrapper() },
 				{ new iTextImageWrapper() },
 				{ new ImageIOWrapper() },
-				{ new CommonsImageInfoWrapper() } };
+				//{ new CommonsImageInfoWrapper() } 
+				};
 		return Arrays.asList(providers);
 	}
 
