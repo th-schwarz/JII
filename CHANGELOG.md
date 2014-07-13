@@ -1,6 +1,6 @@
 # changelog
 
-* 1.0.1-SNAPSHOT
+* 1.0.1
   * issue #5: ImageMagick: path to the library must be respected 
   * issue #6: Some wrappers doesn't close InputStreams correctly
 
