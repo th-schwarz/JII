@@ -7,6 +7,10 @@ This project licensed under the [Apache License, Version 2.0](http://www.apache.
 
 ## Changes 
 
+* 1.0.1
+  * issue #5: ImageMagick: path to the library must be respected 
+  * issue #6: Some wrappers doesn't close InputStreams correctly
+
 * 1.0
   * changed the base package to codes.thischwa.jii
   * updated slf4j to 1.7.7
