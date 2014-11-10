@@ -89,9 +89,6 @@ public class ImageIOWrapper implements IDimensionProvider {
 			imageType = ImageType.getByExtension(reader.getFormatName());
 		} catch (Exception e) {
 			throw new ReadException(e);
-		} finally {
-			IOUtil.closeQuietly(reader);
-			IOUtil.closeQuietly(iin);
 		}
 	}
 
