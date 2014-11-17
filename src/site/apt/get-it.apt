@@ -22,3 +22,28 @@ mvn clean package
 
   It creates a zip file like <<<java-image-info-[version]-SNAPSHOT-bin.zip>>> which contains all binaries
   of the project dependencies. Simply put these files in your classpath.
+
+Using maven2
+
+  JII isn't already part of the official maven repositories. But the author provides a public repository. 
+  In order to use it, you have to add the following snippets to your pom:
+  
+
++------------------------------------------------------------------------------+
+	<repositories>
+		<repository>
+			<id>thischwa-repo</id>
+			<url>http://maven-repo.thischwa.codes/</url>
+		</repository>
+	</repositories>
++------------------------------------------------------------------------------+
+
+   To the dependencies add the following:
+
++------------------------------------------------------------------------------+
+	<dependency>
+		<groupId>codes.thischwa.jii</groupId>
+		<artifactId>java-image-info</artifactId>
+		<version>${java-image-info.version}</version>
+	</dependency>
++------------------------------------------------------------------------------+  
