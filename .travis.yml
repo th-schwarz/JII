@@ -1,7 +1,6 @@
 language: java
 install: true
-script: mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true
-
+script: mvn clean package -DskipTests=true
 
 jdk:
   - openjdk7
