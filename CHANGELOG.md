@@ -1,5 +1,10 @@
 # changelog
 
+* 1.1-SNAPSHOT
+  * issue #5 Include Apache-Commons-Imaging 
+  * issue #8 Update platform to Java 8
+  * updated slf4j to 1.7.25
+
 * 1.0.1
   * issue #5: ImageMagick: path to the library must be respected 
   * issue #6: Some wrappers doesn't close InputStreams correctly
