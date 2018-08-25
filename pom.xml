@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>codes.thischwa.jii</groupId>
 	<artifactId>java-image-info</artifactId>
@@ -24,16 +25,16 @@
 		<url>https://github.com/th-schwarz/JII</url>
 		<connection>scm:git:git://github.com/th-schwarz/JII.git</connection>
 		<developerConnection>scm:git:git@github.com:th-schwarz/JII.git</developerConnection>
-	    <tag>HEAD</tag>
+		<tag>HEAD</tag>
 	</scm>
 
-	<!--repositories>
+	<repositories>
 		<repository>
-			<id>apache.snapshots</id>
-			<url>http://repository.apache.org/snapshots/</url>
+			<id>ImageJPublic</id>
+			<url>http://maven.imagej.net/content/repositories/public/</url>
 		</repository>
-	</repositories-->
-	
+	</repositories>
+
 	<distributionManagement>
 		<repository>
 			<id>thischwa.repo</id>
@@ -46,7 +47,7 @@
 	</distributionManagement>
 
 	<properties>
-		<jse.version>1.7</jse.version>
+		<jse.version>1.8</jse.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
@@ -78,29 +79,28 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-imaging</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
-		-->
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.7</version>
+			<version>1.7.25</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.7</version>
+			<version>1.7.25</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.9</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -195,28 +195,28 @@
 				<!-- builds the distribution zip / it's bind to the package phase -->
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
-		        <configuration>
-		          <descriptors>
-		            <descriptor>src/main/assembly/dist.xml</descriptor>
-		          </descriptors>
-		        </configuration>
-		        <executions>
-		        	<execution>
-		        		<id>dist</id>
-		        		<phase>package</phase>
-		        		<goals>
-		        			<goal>single</goal>
-		        		</goals>
-		        	</execution>
-		        </executions>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/dist.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>dist</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<extensions>
 			<!-- Enabling the use of ssh/scp -->
 			<extension>
-			    <groupId>org.apache.maven.wagon</groupId>
-			    <artifactId>wagon-ssh</artifactId>
-			    <version>2.7</version>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.7</version>
 			</extension>
 		</extensions>
 	</build>

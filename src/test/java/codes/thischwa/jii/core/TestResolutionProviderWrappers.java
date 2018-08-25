@@ -50,7 +50,7 @@ public class TestResolutionProviderWrappers {
 		IResolutionProvider[][] providers = new IResolutionProvider[][] { 
 				{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
 				{ new iTextImageWrapper() },
-				//{ new CommonsImageInfoWrapper() }
+				{ new CommonsImageInfoWrapper() }
 		};
 		return Arrays.asList(providers);
 	}
@@ -66,7 +66,7 @@ public class TestResolutionProviderWrappers {
 				continue;
 			rp.set(info.getFile());
 			Resolution expected = info.getResolution();
-			/*if(rp instanceof CommonsImageInfoWrapper) {
+			if(rp instanceof CommonsImageInfoWrapper) {
 				switch (info.getImageType()) {
 				case GIF:
 					expected = new Resolution(72, 72);
@@ -75,7 +75,7 @@ public class TestResolutionProviderWrappers {
 					expected = new Resolution(71, 71);
 					break;
 				}
-			}*/
+			}
 			String errMsg = String.format("%s#%s", rp.getClass().getSimpleName(), info.getFile().getPath());
 			assertEquals(errMsg, expected, rp.getResolution());
 		}		
