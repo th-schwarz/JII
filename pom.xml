@@ -193,9 +193,6 @@
 				<configuration>
 					<inputEncoding>${project.reporting.inputEncoding}</inputEncoding>
 					<outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
-					<reportPlugins>
-
-					</reportPlugins>
 				</configuration>
 			</plugin>
 			<plugin>
