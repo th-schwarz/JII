@@ -34,8 +34,8 @@ import codes.thischwa.jii.exception.ReadException;
 import codes.thischwa.jii.imagemagick.ImageMagick;
 
 /**
- * Wrapper to the operation bean to the command 'identify' of <a href="http://www.imagemagick.org">ImageMagick</a>.<br/>
- * <br/>
+ * Wrapper to the operation bean to the command 'identify' of <a href="http://www.imagemagick.org">ImageMagick</a>.
+ * <p>
  * Hint: On same OSs the path to the library of ImageMagick must be specified. A corresponding constructor is provided.
  *
  * @author Thilo Schwarz

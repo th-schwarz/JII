@@ -34,8 +34,8 @@ import codes.thischwa.jii.util.ProcessBuilderWrapper;
 
 /**
  * That's the operation bean to the command 'identify' of ImageMagick (http://www.imagemagick.org). It parses its output and provides
- * corresponding properties. <br/>
- * <br/>
+ * corresponding properties. <p>
+ * <p>
  * Hint: GraphicsMagick (http://www.graphicsmagick.org) can't be uses because the missing parameter 'units'.
  */
 public class ImageMagick {

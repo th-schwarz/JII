@@ -38,3 +38,4 @@ Supported libraries / source codes:
   
   * <<Wrapper to Java's javax.imageio.ImageIO>>: A relatively slow pure JRE solution. 
   
+  * <<Wrapper to Apache's {{{https://commons.apache.org/proper/commons-imaging/}commons-imaging}}>>: A pure-Java image library.

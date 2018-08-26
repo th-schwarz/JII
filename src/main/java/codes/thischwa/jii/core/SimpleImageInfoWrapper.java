@@ -34,8 +34,8 @@ import uk.co.jaimon.SimpleImageInfo;
 
 /**
  * Wrapper to the operation bean <a href="http://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo/">SimpleImageInfo</a>
- * by Jaimon Mathew. <br/>
- * <br/>
+ * by Jaimon Mathew.
+ * <p>
  * <strong>There is a problem with Exif-files!</strong>
  *
  * @author Thilo Schwarz

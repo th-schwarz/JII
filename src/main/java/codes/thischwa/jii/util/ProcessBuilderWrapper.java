@@ -29,12 +29,12 @@ import java.util.Map;
 
 /**
  * A wrapper for the {@link ProcessBuilder} that reads all relevant streams which can cause an 'hanging' {@link Process}. The
- * read data of the streams is provided as strings, see {@link #getInfos()} and {@link #getErrors()}.<br/>
- * For more informations see: http://thilosdevblog.wordpress.com/2011/11/21/proper-handling-of-the-processbuilder/ <br/>
- * <br/>
+ * read data of the streams is provided as strings, see {@link #getInfos()} and {@link #getErrors()}.
+ * For more informations see: http://thilosdevblog.wordpress.com/2011/11/21/proper-handling-of-the-processbuilder/ 
+ * <p>
  * Usage:
  * <pre>
- * List<String> cmd = new ArrayList<String>();
+ * List&#60;String&#62; cmd = new ArrayList&#60;&#62;();
  * cmd.add("ls");
  * cmd.add("-al");
  * ProcessBuilderWrapper pbd = new ProcessBuilderWrapper(new File("/tmp"), cmd);

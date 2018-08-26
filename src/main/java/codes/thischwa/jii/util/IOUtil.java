@@ -41,7 +41,7 @@ public class IOUtil {
 
 	/** Default character encoding. */
 	public static final String defaultEncoding = "utf-8";
-	
+
 	private IOUtil() {
 	}
 
@@ -52,7 +52,7 @@ public class IOUtil {
 	 *            Can be <code>null</code>.
 	 */
 	public static void closeQuietly(Closeable closeable) {
-		if (closeable == null)
+		if(closeable == null)
 			return;
 		try {
 			closeable.close();
@@ -60,6 +60,7 @@ public class IOUtil {
 			// irrelevant
 		}
 	}
+
 	/**
 	 * Unconditionally close the desired {@link ImageReader}.
 	 * 
@@ -67,7 +68,7 @@ public class IOUtil {
 	 *            Can be <code>null</code>.
 	 */
 	public static void closeQuietly(ImageReader iReader) {
-		if (iReader == null)
+		if(iReader == null)
 			return;
 		try {
 			iReader.dispose();
@@ -75,7 +76,7 @@ public class IOUtil {
 			// irrelevant
 		}
 	}
-	
+
 	/**
 	 * Unconditionally close the desired {@link ImageInputStream}.
 	 * 
@@ -83,7 +84,7 @@ public class IOUtil {
 	 *            Can be <code>null</code>.
 	 */
 	public static void closeQuietly(ImageInputStream ii) {
-		if (ii == null)
+		if(ii == null)
 			return;
 		try {
 			ii.close();
@@ -99,6 +100,7 @@ public class IOUtil {
 	 *            The {@link InputStream} to read from.
 	 * @return The requested String.
 	 * @throws IOException
+	 *             If an I/O error occurs
 	 */
 	public static String toString(InputStream in) throws IOException {
 		return toString(in, defaultEncoding);
@@ -113,6 +115,7 @@ public class IOUtil {
 	 *            The character encoding to use.
 	 * @return The requested String.
 	 * @throws IOException
+	 *             If an I/O error occurs
 	 */
 	public static String toString(InputStream in, String encoding) throws IOException {
 		char[] buf = new char[defaultBufferSize];
@@ -120,7 +123,7 @@ public class IOUtil {
 		StringWriter strWriter = new StringWriter();
 		BufferedWriter writer = new BufferedWriter(strWriter);
 		int read = reader.read(buf);
-		while (read != -1) {
+		while(read != -1) {
 			writer.write(buf);
 			read = reader.read(buf);
 		}
@@ -144,7 +147,7 @@ public class IOUtil {
 		List<String> lines = new ArrayList<>();
 		String line;
 		try {
-			while ((line = reader.readLine()) != null) {
+			while((line = reader.readLine()) != null) {
 				lines.add(line);
 			}
 		} finally {
