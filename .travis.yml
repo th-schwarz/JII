@@ -3,4 +3,4 @@ install: true
 script: mvn clean package -DskipTests=true
 
 jdk:
-  - openjdk7
+  - openjdk8
