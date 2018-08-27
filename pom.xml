@@ -2,11 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>codes.thischwa.jii</groupId>
 	<artifactId>java-image-info</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>Java Image Info</name>
 	<packaging>jar</packaging>
 	<description>JII provides a clean interface to a collection of Java libraries and source code too read basic properties of images.</description>
-	<url>http://jii.thischwa.codes</url>
+	<url>https://jii.thischwa.codes</url>
 	<inceptionYear>2011</inceptionYear>
 	<licenses>
 		<license>
