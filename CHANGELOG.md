@@ -1,6 +1,6 @@
 # changelog
 
-* 1.1-SNAPSHOT
+* 1.1.0
   * issue #5 Include Apache-Commons-Imaging 
   * issue #8 Update platform to Java 8
   * updated slf4j to 1.7.25
