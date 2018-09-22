@@ -31,6 +31,17 @@ h1, h2, h3 {
 	margin-bottom: 10px;
 }
 
+h5 {
+	font-weight: normal;
+}
+
+h6 {
+	font-size: small;
+	font-weight: normal;
+	border-bottom: 1px solid #bbb;
+	padding-bottom: 2px;
+}
+
 body {
     background-color: #e4e4e4;
 }

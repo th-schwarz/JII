@@ -16,6 +16,8 @@
 		</menu>
 		<menu ref="reports" />
 		<links>
+			<item name="Impressum" href="/legal/impressum.html" />
+			<item name="Privacy" href="/legal/privacy.html" />
 			<item name="JII github:page" href="https://github.com/th-schwarz/JII" />
 		</links>
 	</body>
