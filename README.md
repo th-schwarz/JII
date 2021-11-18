@@ -46,7 +46,7 @@ JII provides currently two interfaces:
 All available implementations (wrappers) can be found in the core package. Each wrapper implements one or both interfaces above.
 
 Example:
-```
+```java
   IDimensionProvider dp = new SimpleImageInfoWrapper();
   dp.set(new File("/dir/file.jpg"));
   Dimension dim = dp.getDimension();
