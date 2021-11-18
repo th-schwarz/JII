@@ -35,7 +35,7 @@ import codes.thischwa.jii.exception.ReadException;
 import codes.thischwa.jii.util.IOUtil;
 
 /**
- * Wrapper to the operation bean <tt>ImageInfo</tt> by Marco Schmidt.
+ * Wrapper to the operation bean <i>ImageInfo</i> by Marco Schmidt.
  *
  * @author Thilo Schwarz
  */
