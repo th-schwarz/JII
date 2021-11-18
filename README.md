@@ -1,32 +1,55 @@
 # JII (Java Image Info) 
 
-It provides a clean interface to a collection of Java 
-libraries and source code to read basic properties of images.
+JII - Java Image Info
+
+There are a lot of possibilities to read out basic properties of image files like the width and height. Each way has its pro and cons relating to specific project requirements. JII provides a simple and clear interface to these different ways which are represented by various libraries and source codes. This significantly simplifies the validation of these methods with respect to a particular project.
+
+The focus is on the following image types which are relevant for the web:
+
+- BMP
+- GIF
+- JPEG
+- PNG
 
 This project licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) (the "License").
 
 [![Build Status](https://travis-ci.org/th-schwarz/JII.svg?branch=master)](https://travis-ci.org/th-schwarz/JII)
 
-## Changelog
+For completeness, here is the [changelog](changelog.md).
 
-* 1.1.0
-  * issue #5 Include Apache-Commons-Imaging 
-  * issue #8 Update platform to Java 8
-  * updated slf4j to 1.7.25
-  * changed to maven 3.5
+## Disclaimer
 
-* 1.0.1
-  * issue #5: ImageMagick: path to the library must be respected 
-  * issue #6: Some wrappers doesn't close InputStreams correctly
+I'm not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty!
 
-* 1.0
-  * changed the base package to codes.thischwa.jii
-  * updated slf4j to 1.7.7
+## Supported libraries / source codes:
 
-* 0.6
-  * updated slf4j to 1.7.5
-  * ImageIOWrapper: add type 'bmp'
+- *[iText](http://sourceforge.net/projects/itext/)*: A library for pdf generation. <br>
+  There is an internal class to read out some image properties.  
+- *ImageInfo*: A small and robust Java class by Marco Schmidt. It seems that he doesn't support this project any longer.<br>
+  The corresponding website hasn't been accessible for years.
+- *[SimpleImageInfo](http://jaimonmathew.wordpress.com/2011/01/29/simpleimageinfo)*: A Java class by Jaimon Mathew
+  to get the image size without loading the whole data. It's very fast.
+- *Wrapper to the command line tool (identify)[http://www.imagemagick.org/script/identify.php] of ImageMagick*: This wrapper is
+  written by the author and analyzes the output of the tool.
+- *Wrapper to Java's javax.imageio.ImageIO*: A relatively slow pure JRE solution. 
+- *Wrapper to Apache's [commons-imaging](https://commons.apache.org/proper/commons-imaging/}commons-imaging)*: A pure-Java image library.
 
-* 0.5
-  * updated slf4j to 1.7.2
-  * issue#2: ImageMagickWrapper: change identify call to work with the format parameter
+## Usage
+
+JII provides currently two interfaces:
+
+- codes.thischwa.jii.IDimensionProvider<br>
+  It just provides the Dimension of an image.
+- codes.thischwa.jii.IResolutionProvider<br>
+  It just provides the Resolution of an image.
+
+All available implementations (wrappers) can be found in the core package. Each wrapper implements one or both interfaces above.
+
+Example:
+```
+  IDimensionProvider dp = new SimpleImageInfoWrapper();
+  dp.set(new File("/dir/file.jpg"));
+  Dimension dim = dp.getDimension();
+  System.out.println(String.format("Dimension: %dx%d", dim.height, dim.width));
+```
+The codes.thischwa.jii.IResolutionProvider works in the same way.

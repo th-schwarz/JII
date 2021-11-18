@@ -18,11 +18,9 @@
  */
 package codes.thischwa.jii;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import codes.thischwa.jii.ImageType;
 
 public class TestImageType {
 

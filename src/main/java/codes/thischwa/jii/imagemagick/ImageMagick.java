@@ -71,7 +71,7 @@ public class ImageMagick {
 		command.add("-units");
 		command.add("PixelsPerInch");
 		command.add("-format");
-		command.add("%G;%[resolution.x]x%[resolution.y];%m");
+		command.add("%G;%xx%y;%m");
 	}
 
 	/**
@@ -104,7 +104,9 @@ public class ImageMagick {
 				env = new HashMap<>();
 				env.put("DYLD_LIBRARY_PATH", libPath);
 			}
-			processBuilder = new ProcessBuilderWrapper(cmd, env);
+			processBuilder = new ProcessBuilderWrapper(cmd.toArray(new String[0]))
+					.environment(env)
+					.run();
 			int status = processBuilder.getStatus();
 			logger.debug("Command has terminated with status: {}", status);
 		} catch (Exception e) {
@@ -112,11 +114,11 @@ public class ImageMagick {
 		}
 		if (processBuilder.hasErrors()) {
 			String msg = String
-					.format("Error while getting infos of the file [%s]: %s", file.getAbsolutePath(), processBuilder.getErrors());
+					.format("Error while getting infos of the file [%s]: %s", file.getAbsolutePath(), processBuilder.getOutput());
 			logger.error(msg);
 			throw new ReadException(msg);
 		}
-		String info = processBuilder.getInfos().trim();
+		String info = processBuilder.getOutput();
 		String[] infos = info.split(";");
 		geometryStr = infos[0];
 		resolutionStr = infos[1];
@@ -136,8 +138,8 @@ public class ImageMagick {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ImageMagick im = new ImageMagick("/Users/thilo/bin/ImageMagick/identify", null);
+		ImageMagick im = new ImageMagick("/usr/local/bin/identify", null);
 		im.set(new File("src/test/resources/JII_120x65-140x72.png"));
-		//System.out.println(im.getValue("geometry"));
+		System.out.println(im.getGeometryStr());
 	}
 }

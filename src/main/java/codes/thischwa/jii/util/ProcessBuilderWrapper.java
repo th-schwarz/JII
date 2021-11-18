@@ -1,146 +1,88 @@
-/*
- *  -------------------------------------------------------------------------------
-
-	This code is licensed under the Apache License, Version 2.0 (the "License"); 
-	You may not use this file except in compliance with the License. 
-
-	You may obtain a copy of the License at 
-
-	http://www.apache.org/licenses/LICENSE-2.0 
-
-	Unless required by applicable law or agreed to in writing, software 
-	distributed under the License is distributed on an "AS IS" BASIS, 
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-	See the License for the specific language governing permissions and 
-	limitations under the License.
-	
- *  -------------------------------------------------------------------------------
- */
 package codes.thischwa.jii.util;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Map;
 
-/**
- * A wrapper for the {@link ProcessBuilder} that reads all relevant streams which can cause an 'hanging' {@link Process}. The
- * read data of the streams is provided as strings, see {@link #getInfos()} and {@link #getErrors()}.
- * For more informations see: http://thilosdevblog.wordpress.com/2011/11/21/proper-handling-of-the-processbuilder/ 
- * <p>
- * Usage:
- * <pre>
- * List&#60;String&#62; cmd = new ArrayList&#60;&#62;();
- * cmd.add("ls");
- * cmd.add("-al");
- * ProcessBuilderWrapper pbd = new ProcessBuilderWrapper(new File("/tmp"), cmd);
- * System.out.println("Command has terminated with status: " + pbd.getStatus());
- * System.out.println("Output:\n" + pbd.getInfos());
- * System.out.println("Error: " + pbd.getErrors());
- * </pre>
- */
 public class ProcessBuilderWrapper {
-	private StringWriter infos;
-	private StringWriter errors;
+	
+	private boolean redirectToStdout;
+	
+	private ByteArrayOutputStream out = new ByteArrayOutputStream();
+
 	private int status;
-
-	public ProcessBuilderWrapper(File directory, List<String> command, Map<String, String> environment) throws Exception {
-		infos = new StringWriter();
-		errors = new StringWriter();
-		ProcessBuilder pb = new ProcessBuilder(command);      
-		if(directory != null)
-			pb.directory(directory);
-		if(environment != null && environment.size() > 0) {
+	
+	private File workingDirectory = null;
+	
+	private String[] command;
+	
+	private Map<String, String> environment = null;
+	
+	public ProcessBuilderWrapper(String... command) {
+		this.command = command;
+	}
+	
+	public ProcessBuilderWrapper run() throws IOException, InterruptedException { 
+		ProcessBuilder pb = new ProcessBuilder(command);
+		if(workingDirectory != null)
+			pb.directory(workingDirectory);
+		if(environment != null && environment.size() > 0) 
 			pb.environment().putAll(environment);
-		}
+			
+		// Consuming STDOUT and STDERR in same thread can lead to the process freezing if it writes large amounts.
+		// That's why we have to redirect the error stream, see
+		// https://stackoverflow.com/questions/69612116/how-to-print-the-live-data-from-processbuilder-to-console-in-java?noredirect=1#comment123140957_69612116
+		pb.redirectErrorStream(true);
+	
 		Process process = pb.start();
-		StreamBoozer seInfo = new StreamBoozer(process.getInputStream(), new PrintWriter(infos, true));
-		StreamBoozer seError = new StreamBoozer(process.getErrorStream(), new PrintWriter(errors, true));
-		seInfo.start();
-		seError.start();
-		status = process.waitFor();		
-		seInfo.join();
-		seError.join();
+		try (var infoStream = process.getInputStream()) {
+			if(redirectToStdout)
+				infoStream.transferTo(System.out);
+			else
+				infoStream.transferTo(this.out);
+		}
+		status = process.waitFor();
+		return this;
+	}
+	
+	public ProcessBuilderWrapper redirectToStdOut() {
+		this.redirectToStdout = true;
+		return this;
+	}
+	
+	public ProcessBuilderWrapper workingDirectory(String dir)  {
+		this.workingDirectory = Paths.get(dir).toFile();
+		return this;
+	}
+	
+	public ProcessBuilderWrapper environment(Map<String, String> environment) {
+		this.environment = environment;
+		return this;
 	}
 
-	public ProcessBuilderWrapper(File directory, List<String> command) throws Exception {
-		this(directory, command, null);
-	}
-	
-	public ProcessBuilderWrapper(List<String> command) throws Exception {
-		this(null, command);
-	}
-
-	public ProcessBuilderWrapper(List<String> command, Map<String, String> environment) throws Exception {
-		this(null, command, environment);
-	}
-	
-	/**
-	 * Get the content of the errorstream of the underlying process. Line separator is the system property <tt>line.separator</tt>.
-	 * 
-	 * @return Errors as String or an empty String if there are no errors.
-	 */
-	public String getErrors() {
-		return errors.toString();
-	}
-	
-	/**
-	 * Obtain if errors are happened or not.
-	 * 
-	 * @return <code>true</code> if one or more errors are happened, otherwise <code>false</code>.
-	 */
-	public boolean hasErrors() {
-		return (errors != null && !getErrors().isEmpty());
-	}
-	
-	/**
-	 * Get the content of the inputstream of the underlying process. Line separator is the system property <tt>line.separator</tt>.
-	 * 
-	 * @return Output of the process as String or an empty String if there are no errors.
-	 */
-	public String getInfos() {
-		return infos.toString();
-	}
-	
-	/**
-	 * Get the return status of the underlying process.
-	 * @return The return status. By convention, the value 0 indicates normal termination.
-	 * @see Process#waitFor()
-	 */
 	public int getStatus() {
 		return status;
 	}
+	
+	public String getOutput() {
+		return (redirectToStdout) ? "n/a" : out.toString();
+	}
+	
+	public boolean hasErrors() {
+		return getStatus() != 0;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		ProcessBuilderWrapper builder = new ProcessBuilderWrapper("/usr/local/bin/identify", 
+				"-units", "PixelsPerInch", 
+				"-format", "%G;%xx%y;%m", 
+				"src/test/resources/JII_120x65-140x72.png")
+				.run();
+		int status = builder.getStatus();
+		System.out.println("status: "+status);
+		System.out.println("out: "+builder.getOutput());
+	}
 
-	/**
-	 * Thread to 'booze' an {@link InputStream}. The content will be written to the desired {@link PrintWriter}. 
-	 */
-	private class StreamBoozer extends Thread {
-		private InputStream in;
-		private PrintWriter pw;
-		
-		StreamBoozer(InputStream in, PrintWriter pw) {
-			this.in = in;
-			this.pw = pw;
-		}
-		
-		@Override
-		public void run() {
-			BufferedReader br = null;
-			try {
-				br = new BufferedReader(new InputStreamReader(in));
-				String line = null;
-	            while ( (line = br.readLine()) != null) {
-	            	pw.println(line);
-	            }
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				IOUtil.closeQuietly(br);
-			}
-		}
-	}	
 }
