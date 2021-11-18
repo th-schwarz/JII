@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"codes.thischwa.jii"},{"l":"codes.thischwa.jii.core"},{"l":"codes.thischwa.jii.exception"},{"l":"codes.thischwa.jii.util"}]
