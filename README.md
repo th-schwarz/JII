@@ -1,6 +1,4 @@
-# JII (Java Image Info) 
-
-JII - Java Image Info
+# JII - Java Image Info
 
 There are a lot of possibilities to read out basic properties of image files like the width and height. Each way has its pro and cons relating to specific project requirements. JII provides a simple and clear interface to these different ways which are represented by various libraries and source codes. This significantly simplifies the validation of these methods with respect to a particular project.
 
