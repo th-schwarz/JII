@@ -36,17 +36,6 @@
 		</repository>
 	</repositories>
 
-	<distributionManagement>
-		<repository>
-			<id>thischwa.repo</id>
-			<url>${repo-url}</url>
-		</repository>
-		<site>
-			<id>jii.site</id>
-			<url>${jii-site-url}</url>
-		</site>
-	</distributionManagement>
-
 	<properties>
 		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
