@@ -34,11 +34,13 @@ I'm not responsible for any data loss, hardware damage or broken keyboards. This
 
 ## Usage
 
+Here is the [current api doc](https://th-schwarz.github.io/JII/apidocs/index.html)!
+
 JII provides currently two interfaces:
 
-- codes.thischwa.jii.IDimensionProvider<br>
+- [codes.thischwa.jii.IDimensionProvider](https://th-schwarz.github.io/JII/apidocs/codes/thischwa/jii/IDimensionProvider.html)<br>
   It just provides the Dimension of an image.
-- codes.thischwa.jii.IResolutionProvider<br>
+- [codes.thischwa.jii.IResolutionProvider](https://th-schwarz.github.io/JII/apidocs/codes/thischwa/jii/IResolutionProvider.html)<br>
   It just provides the Resolution of an image.
 
 All available implementations (wrappers) can be found in the core package. Each wrapper implements one or both interfaces above.
