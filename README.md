@@ -9,7 +9,7 @@ The focus is on the following image types which are relevant for the web:
 - JPEG
 - PNG
 
-This project licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) (the "License").
+[![GitHub license](https://img.shields.io/github/license/th-schwarz/JII)](https://github.com/th-schwarz/JII/blob/develop/LICENSE.txt)
 
 [![Build Status](https://travis-ci.com/th-schwarz/JII.svg?branch=master)](https://travis-ci.com/th-schwarz/JII)
 
