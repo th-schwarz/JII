@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>codes.thischwa.jii</groupId>
 	<artifactId>java-image-info</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<name>Java Image Info</name>
 	<packaging>jar</packaging>
-	<description>JII provides a clean interface to a collection of Java libraries and source code to read basic properties of images.</description>
-	<url>https://jii.thischwa.codes</url>
+	<description>An clean interface to a collection of Java libraries and source code to read basic properties of images.</description>
+	<url>https://github.com/th-schwarz/JII</url>
 	<inceptionYear>2011</inceptionYear>
 	<licenses>
 		<license>
@@ -31,16 +31,33 @@
 
 	<repositories>
 		<repository>
-			<id>ImageJPublic</id>
-			<url>http://maven.imagej.net/content/repositories/public/</url>
+			<id>ThiSchwa-JII</id>
+			<url>https://packagecloud.io/ThiSchwa/JII</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>packagecloud-jii</id>
+			<url>packagecloud+https://packagecloud.io/ThiSchwa/JII</url>
+		</repository>
+		<snapshotRepository>
+			<id>packagecloud-jii</id>
+			<url>packagecloud+https://packagecloud.io/ThiSchwa/JII</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
+		<slf4j.version>1.7.32</slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -78,13 +95,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-			<scope>provided</scope>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.25</version>
+			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -96,11 +112,18 @@
 	</dependencies>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>io.packagecloud.maven.wagon</groupId>
+				<artifactId>maven-packagecloud-wagon</artifactId>
+				<version>0.0.6</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -110,7 +133,7 @@
 				<!-- build the javadoc jar -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>3.3.1</version>
 				<configuration>
 					<show>protected</show>
 					<nohelp>true</nohelp>
@@ -139,7 +162,7 @@
 			<plugin>
 				<!-- builds the distribution zip / it's bind to the package phase -->
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.3.0</version>
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/dist.xml</descriptor>
@@ -148,7 +171,8 @@
 				<executions>
 					<execution>
 						<id>dist</id>
-						<phase>package</phase>
+						<!-- bind on deploy, because the zip shouldn't upload to the repo -->
+						<phase>deploy</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
