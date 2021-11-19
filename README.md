@@ -1,6 +1,4 @@
-# JII (Java Image Info) 
-
-JII - Java Image Info
+# JII - Java Image Info
 
 There are a lot of possibilities to read out basic properties of image files like the width and height. Each way has its pro and cons relating to specific project requirements. JII provides a simple and clear interface to these different ways which are represented by various libraries and source codes. This significantly simplifies the validation of these methods with respect to a particular project.
 
@@ -36,17 +34,19 @@ I'm not responsible for any data loss, hardware damage or broken keyboards. This
 
 ## Usage
 
+Here is the [current api doc](https://th-schwarz.github.io/JII/apidocs/index.html)!
+
 JII provides currently two interfaces:
 
-- codes.thischwa.jii.IDimensionProvider<br>
+- [codes.thischwa.jii.IDimensionProvider](https://th-schwarz.github.io/JII/apidocs/codes/thischwa/jii/IDimensionProvider.html)<br>
   It just provides the Dimension of an image.
-- codes.thischwa.jii.IResolutionProvider<br>
+- [codes.thischwa.jii.IResolutionProvider](https://th-schwarz.github.io/JII/apidocs/codes/thischwa/jii/IResolutionProvider.html)<br>
   It just provides the Resolution of an image.
 
 All available implementations (wrappers) can be found in the core package. Each wrapper implements one or both interfaces above.
 
 Example:
-```
+```java
   IDimensionProvider dp = new SimpleImageInfoWrapper();
   dp.set(new File("/dir/file.jpg"));
   Dimension dim = dp.getDimension();
