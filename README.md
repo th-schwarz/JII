@@ -15,6 +15,8 @@ This project licensed under the [Apache License, Version 2.0](http://www.apache.
 
 For completeness, here is the [changelog](changelog.md).
 
+Last release      [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/th-schwarz/JJI?include_prereleases)](https://github.com/th-schwarz/JJI/releases)
+
 ## Disclaimer
 
 I'm not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty!
