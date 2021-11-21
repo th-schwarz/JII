@@ -15,11 +15,34 @@ The focus is on the following image types which are relevant for the web:
 
 For completeness, here is the [changelog](changelog.md).
 
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/th-schwarz/JII?include_prereleases)](https://github.com/th-schwarz/JII/releases)
-
 ## Disclaimer
 
 I'm not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty!
+
+## Get It
+
+## By Download
+
+All required jars can be found in the current release: 
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/th-schwarz/JII?include_prereleases)](https://github.com/th-schwarz/JII/releases) <br>
+Hint: The Zip file contains all dependencies.
+
+## By Maven
+
+The following entries are required in the ```pom.xml```:
+```xml
+<repositories>
+	<repository>
+		<id>myrepo</id>
+		<url>https://myrepo.thischwa.codes/repository/jii/</url>
+	</repository>
+</repositories>
+<dependency>
+  <groupId>codes.thischwa.jii</groupId>
+  <artifactId>java-image-info</artifactId>
+  <version>1.2.0</version>
+</dependency>
+```
 
 ## Supported libraries / source codes:
 

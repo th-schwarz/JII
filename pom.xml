@@ -29,8 +29,8 @@
 
 	<repositories>
 		<repository>
-			<id>ThiSchwa-JII</id>
-			<url>https://packagecloud.io/ThiSchwa/JII</url>
+			<id>myrepo</id>
+			<url>https://myrepo.thischwa.codes/repository/jii/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -41,12 +41,12 @@
 	</repositories>
 	<distributionManagement>
 		<repository>
-			<id>packagecloud-jii</id>
-			<url>packagecloud+https://packagecloud.io/ThiSchwa/JII</url>
+			<id>myrepo</id>
+			<url>https://myrepo.thischwa.codes/repository/jii/</url>
 		</repository>
 		<snapshotRepository>
-			<id>packagecloud-jii</id>
-			<url>packagecloud+https://packagecloud.io/ThiSchwa/JII</url>
+			<id>myrepo</id>
+			<url>https://myrepo.thischwa.codes/repository/jii/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
