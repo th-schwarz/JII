@@ -21,13 +21,13 @@ I'm not responsible for any data loss, hardware damage or broken keyboards. This
 
 ## Get It
 
-## By Download
+### By Download
 
 All required jars can be found in the current release: 
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/th-schwarz/JII?include_prereleases)](https://github.com/th-schwarz/JII/releases) <br>
 Hint: The Zip file contains all dependencies.
 
-## By Maven
+### By Maven
 
 The following entries are required in the ```pom.xml```:
 ```xml
