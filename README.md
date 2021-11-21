@@ -37,10 +37,11 @@ The following entries are required in the ```pom.xml```:
 		<url>https://myrepo.thischwa.codes/repository/jii/</url>
 	</repository>
 </repositories>
+
 <dependency>
-  <groupId>codes.thischwa.jii</groupId>
-  <artifactId>java-image-info</artifactId>
-  <version>1.2.0</version>
+	<groupId>codes.thischwa.jii</groupId>
+	<artifactId>java-image-info</artifactId>
+	<version>1.2.0</version>
 </dependency>
 ```
 
