@@ -4,4 +4,4 @@ language:  java
 jdk: openjdk11
 
 install: true
-script: mvn clean package -DskipTests -Dmaven.javadoc.skip
+script: mvn clean package
