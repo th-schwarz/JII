@@ -47,10 +47,16 @@ public class TestResolutionProviderWrappers {
 	public static Collection<IResolutionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
 		String dylIM = PropertiesHolder.get("im.dyld");
-		IResolutionProvider[][] providers = new IResolutionProvider[][] { 
+		String ignoreIm = System.getProperty("im.ignore");
+		IResolutionProvider[][] providers =  "true".equals(ignoreIm) ?  new IResolutionProvider[][] { 
 				{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
 				{ new iTextImageWrapper() },
 				{ new CommonsImageInfoWrapper() }
+		} :
+			 new IResolutionProvider[][] { 
+			{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
+			{ new iTextImageWrapper() },
+			{ new CommonsImageInfoWrapper() }
 		};
 		return Arrays.asList(providers);
 	}

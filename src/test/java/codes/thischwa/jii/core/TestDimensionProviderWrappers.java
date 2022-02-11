@@ -46,14 +46,22 @@ public class TestDimensionProviderWrappers {
 	public static Collection<IDimensionProvider[]> data() {
 		String commandDirIM = PropertiesHolder.get("im.command");
 		String dylIM = PropertiesHolder.get("im.dyld");
-		IDimensionProvider[][] providers = new IDimensionProvider[][] { 
+		String ignoreIm = System.getProperty("im.ignore");
+		IDimensionProvider[][] providers = "true".equals(ignoreIm) ? new IDimensionProvider[][] { 
+				{ new ImageInfoWrapper() }, 
+				{ new SimpleImageInfoWrapper() },
+				{ new iTextImageWrapper() },
+				{ new ImageIOWrapper() },
+				{ new CommonsImageInfoWrapper() } 
+				} 
+		: new IDimensionProvider[][] { 
 				{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
 				{ new ImageInfoWrapper() }, 
 				{ new SimpleImageInfoWrapper() },
 				{ new iTextImageWrapper() },
 				{ new ImageIOWrapper() },
 				{ new CommonsImageInfoWrapper() } 
-				};
+		};
 		return Arrays.asList(providers);
 	}
 
@@ -61,8 +69,8 @@ public class TestDimensionProviderWrappers {
 	public void testGetDimension() throws Exception {
 		List<ImageType> supportedImageTypes = Arrays.asList(dp.getSupportedTypes());
 		ImageFileInfo[] infos = ImageFileInfo.getAll();
-		for (ImageFileInfo info : infos) {
-			if (!supportedImageTypes.contains(info.getImageType()))
+		for(ImageFileInfo info : infos) {
+			if(!supportedImageTypes.contains(info.getImageType()))
 				continue;
 			dp.set(info.getFile());
 			assertEquals(info.getFile().getName(), info.getDimension(), dp.getDimension());
