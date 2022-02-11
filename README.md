@@ -11,7 +11,7 @@ The focus is on the following image types which are relevant for the web:
 
 [![GitHub license](https://img.shields.io/github/license/th-schwarz/JII)](https://github.com/th-schwarz/JII/blob/develop/LICENSE.txt)
 
-[![Build Status](https://travis-ci.com/th-schwarz/JII.svg?branch=master)](https://travis-ci.com/th-schwarz/JII)
+[![Build Status](https://app.travis-ci.com/th-schwarz/JII.svg?branch=develop)](https://app.travis-ci.com/th-schwarz/JII)
 
 For completeness, here is the [changelog](changelog.md).
 
