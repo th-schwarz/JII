@@ -49,7 +49,6 @@ public class TestResolutionProviderWrappers {
 		String dylIM = PropertiesHolder.get("im.dyld");
 		String ignoreIm = System.getProperty("im.ignore");
 		IResolutionProvider[][] providers =  "true".equals(ignoreIm) ?  new IResolutionProvider[][] { 
-				{ new ImageMagickWrapper(commandDirIM, dylIM) }, 
 				{ new iTextImageWrapper() },
 				{ new CommonsImageInfoWrapper() }
 		} :
