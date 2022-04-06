@@ -33,7 +33,7 @@ The following entries are required in the ```pom.xml```:
 ```xml
 <repositories>
 	<repository>
-		<id>myrepo</id>
+		<id>jiirepo</id>
 		<url>https://myrepo.thischwa.codes/repository/jii/</url>
 	</repository>
 </repositories>
